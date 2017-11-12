@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="ParkingLot">
+  	<parameter name="testSceanriosfilePath" value="src/test/resources/createParkingLotTestScenarios.csv"/>
+    <classes>
+      <class name="com.gojek.bl.ParkingLotImplTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
