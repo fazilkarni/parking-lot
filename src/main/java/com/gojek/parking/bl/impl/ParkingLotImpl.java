@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.gojek.parking.bl.ParkingLot;
+import com.gojek.parking.util.Utils;
 import com.gojek.parking.vo.Slot;
 
 /**
@@ -19,7 +20,7 @@ public class ParkingLotImpl implements ParkingLot{
 	public List<Slot> createParkingLot(int totalSlots) {
 		if(totalSlots>0 && totalSlots<SLOTS_LIMIT){
 			slots = new ArrayList<Slot>(totalSlots);
-			for(int i=0;i<totalSlots;i++){
+			for(int i=1;i<=totalSlots;i++){
 				this.slots.add(new Slot(i));
 			}
 		}
@@ -27,22 +28,29 @@ public class ParkingLotImpl implements ParkingLot{
 	}
 
 	public Slot park(String regNumber, String color) {
-		// TODO Auto-generated method stub
-		return null;
+		if(slots==null) return null;
+		Slot slot = Utils.getFreeSlot(slots);
+		if(slot!=null){
+			slot.setRegNumber(regNumber);
+			slot.setColor(color);
+		}
+		return slot;
 	}
 
 	public Slot leave(String regNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		Slot slot = Utils.getSlotByRegNumber(slots,regNumber);
+		if(slot!=null){
+			slot.setOccupied(false);
+		}
+		return slot;
 	}
 
 	public List<Slot> getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return slots;
 	}
 
 	public List<String> getRegNumbersByColor(String color) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -65,4 +73,5 @@ public class ParkingLotImpl implements ParkingLot{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

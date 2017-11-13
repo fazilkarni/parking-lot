@@ -10,4 +10,9 @@ public class ParkingLotDataProvider {
 	public static Object[][] getDataProvider(ITestContext context) {
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter("testSceanriosfilePath"));
 	}
+	@DataProvider(name = "parkDataProvider")
+	public static Object[][] getParkTestScenarios(ITestContext context) {
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter("testSceanriosfilePath"));
+	}
+	
 }
