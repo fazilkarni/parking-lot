@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.util.Utils;
+import com.gojek.parking.util.Validator;
 import com.gojek.parking.vo.Slot;
 
 /**
@@ -15,6 +16,8 @@ import com.gojek.parking.vo.Slot;
 
 
 public class ParkingLotImpl implements ParkingLot{
+	
+	
 	private int SLOTS_LIMIT=99999;
 	private List<Slot> slots;
 	public List<Slot> createParkingLot(int totalSlots) {
@@ -28,12 +31,15 @@ public class ParkingLotImpl implements ParkingLot{
 	}
 
 	public Slot park(String regNumber, String color) {
-		if(slots==null) return null;
-		Slot slot = Utils.getFreeSlot(slots);
-		if(slot!=null){
-			slot.setRegNumber(regNumber);
-			slot.setColor(color);
-		}
+		Slot slot = null;
+		if(Validator.validateRegNumber(regNumber) && Validator.validateColor(color)){
+			if(slots==null) return null;
+			slot = Utils.getFreeSlot(slots);
+			if(slot!=null){
+				slot.setRegNumber(regNumber);
+				slot.setColor(color);
+			}
+		}	
 		return slot;
 	}
 
