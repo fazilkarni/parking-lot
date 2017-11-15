@@ -16,66 +16,89 @@ import com.gojek.parking.vo.Slot;
 
 
 public class ParkingLotImpl implements ParkingLot{
-	
-	
 	private int SLOTS_LIMIT=99999;
 	private List<Slot> slots;
-	public List<Slot> createParkingLot(int totalSlots) {
+	
+	public ParkingLotResponse<Slot,String>  createParkingLot(int totalSlots) {
+		ParkingLotResponse<Slot,String>  response = new ParkingLotResponse<Slot,String>();
 		if(totalSlots>0 && totalSlots<SLOTS_LIMIT){
 			slots = new ArrayList<Slot>(totalSlots);
 			for(int i=1;i<=totalSlots;i++){
 				this.slots.add(new Slot(i));
 			}
+		    response.setData(slots);
+			response.setStatus(true);
+		}else{
+			//Construct error response.
+			response.setStatus(false);
+			ArrayList<String> errorMessages = new ArrayList<String>();
+			errorMessages.add("Total slots to be created should be more than 0 and less than max limit "+SLOTS_LIMIT);
 		}
-		return this.slots;
+		return response;
 	}
 
-	public Slot park(String regNumber, String color) {
+	public ParkingLotResponse<Slot,String> park(String regNumber, String color) {
 		Slot slot = null;
-		if(Validator.validateRegNumber(regNumber) && Validator.validateColor(color)){
-			if(slots==null) return null;
-			slot = Utils.getFreeSlot(slots);
-			if(slot!=null){
-				slot.setRegNumber(regNumber);
-				slot.setColor(color);
+		ParkingLotResponse<Slot,String>  response = new ParkingLotResponse<Slot,String>();
+		if(Validator.validateRegNumber(regNumber,response) && Validator.validateColor(color,response)){
+			
+			if(slots==null){
+				response.setStatus(false);
+				return response;
+			}else{
+				slot = Utils.getFreeSlot(slots);
+				if(slot!=null){
+					slot.setRegNumber(regNumber);
+					slot.setColor(color);
+					slot.setOccupied(true);
+					List<Slot> data = new ArrayList<Slot>();
+					data.add(slot);
+					response.setData(data);
+					response.setStatus(true);
+				}
 			}
 		}	
-		return slot;
+		return response;
 	}
 
-	public Slot leave(String regNumber) {
+	public ParkingLotResponse<Slot,String> leave(String regNumber) {
 		Slot slot = Utils.getSlotByRegNumber(slots,regNumber);
 		if(slot!=null){
 			slot.setOccupied(false);
 		}
-		return slot;
+		ParkingLotResponse<Slot,String>  response = new ParkingLotResponse<Slot,String>();
+		List<Slot> slots = new ArrayList<Slot>();
+		slots.add(slot);
+		response.setData(slots);
+		response.setStatus(true);
+		return response;
 	}
 
-	public List<Slot> getStatus() {
-		return slots;
+	public ParkingLotResponse<Slot,String> getStatus() {
+		return null;
 	}
 
-	public List<String> getRegNumbersByColor(String color) {
+	public ParkingLotResponse<Slot,String> getRegNumbersByColor(String color) {
 		
 		return null;
 	}
 
-	public Integer getSlotByRegNumber(String regNumber) {
+	public ParkingLotResponse<Slot,String> getSlotByRegNumber(String regNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Integer> getSlotNumsByColor(String color) {
+	public ParkingLotResponse<Slot,String> getSlotNumsByColor(String color) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Slot> getAllSlotsByCarColor(String color) {
+	public ParkingLotResponse<Slot,String> getAllSlotsByCarColor(String color) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Slot> getAllSlotsByRegNumber(String regNumber) {
+	public ParkingLotResponse<Slot,String> getAllSlotsByRegNumber(String regNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,8 +1,9 @@
 package com.gojek.parking.bl;
 
-import java.util.List;
-
+import com.gojek.parking.bl.impl.ParkingLotResponse;
 import com.gojek.parking.vo.Slot;
+
+
 
 
 /**
@@ -12,17 +13,17 @@ import com.gojek.parking.vo.Slot;
  */
 public interface ParkingLot {
 	
-	public List<Slot> createParkingLot(int slots);
-	public Slot park(String regNumber,String color);
-	public Slot leave(String regNumber);
-	public List<Slot> getStatus();
-	public List<String> getRegNumbersByColor(String color);
-	public Integer getSlotByRegNumber(String regNumber);
-	public List<Integer> getSlotNumsByColor(String color);
+	public ParkingLotResponse<Slot,String> createParkingLot(int slots);
+	public ParkingLotResponse<Slot,String>  park(String regNumber,String color);
+	public ParkingLotResponse<Slot,String>  leave(String regNumber);
+	public ParkingLotResponse<Slot,String>  getStatus();
+	public ParkingLotResponse<Slot,String>  getRegNumbersByColor(String color);
+	public ParkingLotResponse<Slot,String>  getSlotByRegNumber(String regNumber);
+	public ParkingLotResponse<Slot,String>  getSlotNumsByColor(String color);
 	
 	/* Following are nice to have. These can be used in scenarios where more info is required.*/
-	public List<Slot> getAllSlotsByCarColor(String color);
-	public List<Slot> getAllSlotsByRegNumber(String regNumber);
+	public ParkingLotResponse<Slot,String>  getAllSlotsByCarColor(String color);
+	public ParkingLotResponse<Slot,String>  getAllSlotsByRegNumber(String regNumber);
 	
 
 }

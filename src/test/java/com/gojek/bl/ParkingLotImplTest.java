@@ -2,19 +2,18 @@ package com.gojek.bl;
 
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import java.util.List;
-
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.gojek.bl.data.ParkingLotDataProvider;
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotImpl;
+import com.gojek.parking.bl.impl.ParkingLotResponse;
 import com.gojek.parking.vo.Slot;
 
 public class ParkingLotImplTest {
+	
 	
 	@Test(dataProvider = "createParkingLotDataProvider", dataProviderClass = ParkingLotDataProvider.class)
 	public void createParkingSlotsTest(Object[] data) {
@@ -22,12 +21,18 @@ public class ParkingLotImplTest {
 	System.out.println(data);
 	int totalslot = Integer.parseInt(data[0].toString());
 	ParkingLot parking = new ParkingLotImpl();
-	List<Slot> slots = parking.createParkingLot(totalslot);
-		if(totalslot>0 && totalslot<1000000){
+	ParkingLotResponse<Slot, String> response = parking.createParkingLot(totalslot);
+		if(totalslot>0 && totalslot<99999){
 			expectedslots = Integer.parseInt(data[1].toString());
-			assertEquals(slots.size(),expectedslots);
+			assertTrue(response.isStatus());
+			assertEquals(response.getData().size(),expectedslots);
+			
 		}else
-			assertTrue(slots==null);
+			assertFalse(response.isStatus());
+		    assertEquals(response.getData(),null);
+		    assertTrue(response.getErrors()!=null);
+		    assertTrue(response.getErrors().get(0).equals("Total slots to be created should be more than 0 and less than max limit "+99999));
+		    
 
 	}
 	
@@ -36,14 +41,18 @@ public class ParkingLotImplTest {
 		ParkingLot parking = new ParkingLotImpl();
 		//This is the dependency.
 		parking.createParkingLot(1);
-		Slot slot = parking.park((String)data[0], (String)data[1]);
-		if(data[2]!=null && !((String)data[2]).contains("null")){
-			assertTrue(slot!=null);
-			assertTrue(slot.getColor().equals((String)data[1]));
-			assertTrue(slot.getRegNumber().equals((String)data[0]));
-			assertTrue(slot.getSlotNumber()>0);
+		ParkingLotResponse<Slot, String> response = parking.park((String)data[0], (String)data[1]);
+		if(data[2]!=null && ((String)data[2]).contains("occupied=true")){
+			assertTrue(response!=null);
+			assertTrue(response.isStatus());
+			assertTrue(response.getData().get(0).getOccupied());
+			assertTrue(response.getData().get(0).getColor().equals((String)data[1]));
+			assertTrue(response.getData().get(0).getRegNumber().equals((String)data[0]));
+			assertTrue(response.getData().get(0).getSlotNumber()>0);
 		}else{
-			assertTrue(slot==null);
+			assertTrue(response!=null);
+			assertFalse(response.isStatus());
+			assertTrue(response.getErrors().get(0).equals("Registration number "+(String)data[0]+" is not valid"));
 		}
     }
 	
