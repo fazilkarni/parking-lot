@@ -6,14 +6,11 @@ package com.gojek.parking.vo;
  *TODO: Add parking and leaving timestamp.
  */
 public class Slot {
-	private int slotNumber;
+	private final int slotNumber;
 	private String regNumber;
 	private String color;
 	private boolean occupied;
 	
-	public Slot(){
-		
-	}
 	public Slot(int slotNumber){
 		this.slotNumber = slotNumber;
 		
@@ -21,9 +18,7 @@ public class Slot {
 	public int getSlotNumber() {
 		return slotNumber;
 	}
-	public void setSlotNumber(int slotNumber) {
-		this.slotNumber = slotNumber;
-	}
+	
 	public String getRegNumber() {
 		return regNumber;
 	}

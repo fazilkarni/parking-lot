@@ -56,6 +56,28 @@ public class ParkingLotImplTest {
 		}
     }
 	
+	@Test(dataProvider = "leaveDataProvider", dataProviderClass= ParkingLotDataProvider.class)
+	public void leaveTest(Object[] data){
+		ParkingLot parking = new ParkingLotImpl();
+		//This is the prerequisite.
+		parking.createParkingLot(1);
+		parking.park("KA-51-Z-1990","GREEN");
+		
+		ParkingLotResponse<Slot, String> response = parking.leave((String)data[0]);
+		
+		if(data[1]!=null && ((String)data[1]).contains("occupied=false")){
+			assertTrue(response!=null);
+			assertTrue(response.isStatus());
+			assertFalse(response.getData().get(0).getOccupied());
+			assertTrue(response.getData().get(0).getColor()==null);
+			assertTrue(response.getData().get(0).getRegNumber()==null);			
+		}else{
+			assertTrue(response!=null);
+			assertFalse(response.isStatus());
+			assertTrue(response.getErrors().get(0).equals((String)data[1]));
+		}
+	}
+	
 	
 	
 	

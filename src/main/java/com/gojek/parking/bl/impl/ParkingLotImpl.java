@@ -62,15 +62,31 @@ public class ParkingLotImpl implements ParkingLot{
 	}
 
 	public ParkingLotResponse<Slot,String> leave(String regNumber) {
-		Slot slot = Utils.getSlotByRegNumber(slots,regNumber);
-		if(slot!=null){
-			slot.setOccupied(false);
-		}
+		Slot slot = null;
+		List<String> errorMessages = null;
 		ParkingLotResponse<Slot,String>  response = new ParkingLotResponse<Slot,String>();
+		if(Validator.validateRegNumber(regNumber,response) ){
+			slot = Utils.getSlotByRegNumber(slots,regNumber);
+			if(slot!=null){
+				slot.setOccupied(false);
+				slot.setColor(null);
+				slot.setRegNumber(null);
+			}else{
+				errorMessages = new ArrayList<String>();
+				errorMessages.add("No such registration numbered car parked.");
+			}
+		}else{
+			errorMessages = new ArrayList<String>();
+			errorMessages.add("Registration number "+regNumber+" is invalid");
+		}
+		//Construct the response.
+		
 		List<Slot> slots = new ArrayList<Slot>();
 		slots.add(slot);
 		response.setData(slots);
-		response.setStatus(true);
+		response.setStatus(slot!=null?true:false);
+		response.setErrors(errorMessages);
+		
 		return response;
 	}
 
