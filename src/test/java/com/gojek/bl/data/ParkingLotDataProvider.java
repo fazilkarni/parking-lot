@@ -20,4 +20,9 @@ public class ParkingLotDataProvider {
 	public static Object[][] getLeaveTestScenarios(ITestContext context) {
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
+	
+	@DataProvider(name = "statusPrerequisite")
+	public static Object[][] getStatusTestPrerequisite(ITestContext context) {
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
+	}
 }

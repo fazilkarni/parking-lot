@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="false">
-<!-- 	<test name="ParkingLot"> -->
-<!-- 		<parameter name="testSceanriosfilePath" -->
-<!-- 			value="src/test/resources/createParkingLotTestScenarios.csv" /> -->
-<!-- 		<classes> -->
-<!-- 			<class name="com.gojek.bl.ParkingLotImplTest" /> -->
-<!-- 			<methods> -->
-<!-- 				<include name="createParkingSlotsTest" /> -->
-<!-- 			</methods> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+
+	<test name="createParkingLot">
+		<parameter name="testSceanriosfilePath" value="src/test/resources/createParkingLotTestScenarios.csv" />
+		<classes>
+			<class name="com.gojek.bl.ParkingLotImplTest" />
+			<methods>
+				<include name="createParkingSlotsTest" />
+
+			</methods>
+		</classes>
+	</test>
+ 
 	<test name="Park">
 		<parameter name="testSceanriosfilePath" value="src/test/resources/parkTestScenarios.csv" />
 		<classes>
@@ -28,6 +30,17 @@
 			<methods>
 				<include name="leaveTest" />
 
+			</methods>
+		</classes>
+	</test>
+	
+	<test name="status">
+		<parameter name="testSceanriosfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
+		<classes>
+			<class name="com.gojek.bl.ParkingLotImplTest" />
+			<methods>
+				<include name="statusTest" />
+				<include name="statusPrerequisite" />
 			</methods>
 		</classes>
 	</test>
