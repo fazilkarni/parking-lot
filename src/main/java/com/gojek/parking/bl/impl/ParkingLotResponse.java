@@ -2,7 +2,6 @@ package com.gojek.parking.bl.impl;
 
 import java.util.List;
 
-import com.gojek.parking.vo.Slot;
 
 public class ParkingLotResponse<T> {
 	private List<T> data;

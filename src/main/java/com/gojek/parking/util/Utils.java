@@ -11,6 +11,8 @@ import com.gojek.parking.client.Command;
 import com.gojek.parking.client.CreateParkingLotCommand;
 import com.gojek.parking.client.LeaveCommand;
 import com.gojek.parking.client.ParkCommand;
+import com.gojek.parking.client.RegNumbersForCarsWithColorCommand;
+import com.gojek.parking.client.SlotNumbersForCarsWithColorCommand;
 import com.gojek.parking.client.StatusCommand;
 import com.gojek.parking.vo.Slot;
 
@@ -56,6 +58,9 @@ public class Utils {
 		availableCommands.put("park", new ParkCommand(parkingLot));
 		availableCommands.put("leave", new LeaveCommand(parkingLot));
 		availableCommands.put("status", new StatusCommand(parkingLot));
+		availableCommands.put("registration_numbers_for_cars_with_colour", new RegNumbersForCarsWithColorCommand(parkingLot));
+		availableCommands.put("slot_numbers_for_cars_with_colour", new SlotNumbersForCarsWithColorCommand(parkingLot));
+		
 		
 		return availableCommands;
 	}

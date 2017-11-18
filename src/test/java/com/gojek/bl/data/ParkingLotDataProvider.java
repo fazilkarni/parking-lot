@@ -25,4 +25,8 @@ public class ParkingLotDataProvider {
 	public static Object[][] getStatusTestPrerequisite(ITestContext context) {
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
+	@DataProvider(name = "regNumbersForCarsWithColorDataProvider")
+	public static Object[][] getRegNumbersForCarsWithColor(ITestContext context) {
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
+	}
 }

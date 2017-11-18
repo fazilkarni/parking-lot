@@ -6,12 +6,10 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.xml.ws.Response;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import com.gojek.bl.data.ParkingLotDataProvider;
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotImpl;
@@ -21,7 +19,6 @@ import com.gojek.parking.vo.Slot;
 public class ParkingLotImplTest {
 	private ParkingLot parking;
 	private ParkingLot parkingForStatus;
-	private List<Slot> slotsInPL;
 	private Boolean[] parkingLotCurrentStatus;
 
 	@BeforeMethod
@@ -133,5 +130,11 @@ public class ParkingLotImplTest {
 				parkingLotCurrentStatus[response.getData().get(0).getSlotNumber()-1]=false;
 			}
 		}
+	}
+	
+	@Test(dependsOnMethods = "statusPrerequisite", dataProvider = "regNumbersForCarsWithColorDataProvider", dataProviderClass = ParkingLotDataProvider.class)
+	public void registrationNumbersForCarsWithColour(Object[] data) {
+		ParkingLotResponse<String> response = parkingForStatus.getRegNumbersByColor((String)data[0]);
+		assertTrue(response.isStatus());
 	}
 }

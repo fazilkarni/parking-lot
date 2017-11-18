@@ -44,5 +44,14 @@
 			</methods>
 		</classes>
 	</test>
-	
+	<test name="registration_numbers_for_cars_with_colour">
+		<parameter name="testSceanriosfilePath" value="src/test/resources/registrationNumbersForCarsWithColourTestScenarios.csv" />
+		<classes>
+			<class name="com.gojek.bl.ParkingLotImplTest" />
+			<methods>
+				<include name="registrationNumbersForCarsWithColour" />
+				<include name="statusPrerequisite" />
+			</methods>
+		</classes>
+	</test>
 </suite> <!-- Suite -->
