@@ -1,8 +1,17 @@
 package com.gojek.parking.util;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.gojek.parking.bl.ParkingLot;
+import com.gojek.parking.bl.impl.ParkingLotImpl;
 import com.gojek.parking.bl.impl.ParkingLotResponse;
+import com.gojek.parking.client.Command;
+import com.gojek.parking.client.CreateParkingLotCommand;
+import com.gojek.parking.client.LeaveCommand;
+import com.gojek.parking.client.ParkCommand;
+import com.gojek.parking.client.StatusCommand;
 import com.gojek.parking.vo.Slot;
 
 public class Utils {
@@ -37,6 +46,18 @@ public class Utils {
 			response.setStatus(data!=null?true:false);
 			response.setErrors(errorMessages);
 		    return response;
-		}
+	}
+	
+	public static Map<String, Command> initAvailableCommands(){
+		Map<String, Command> availableCommands = new HashMap<String,Command>();
+		ParkingLot parkingLot = new ParkingLotImpl();
+		
+		availableCommands.put("create_parking_lot", new CreateParkingLotCommand(parkingLot));
+		availableCommands.put("park", new ParkCommand(parkingLot));
+		availableCommands.put("leave", new LeaveCommand(parkingLot));
+		availableCommands.put("status", new StatusCommand(parkingLot));
+		
+		return availableCommands;
+	}
 
 }

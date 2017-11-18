@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  *
  */
 public class Validator {
-	private static String REG_NUM_PATTERN = "[A-Z]{2}-[0-9]{2}-[A-Z]{1}-[0-9]{4}";
+	private static String REG_NUM_PATTERN = "[A-Z]{2}-[0-9]{2}-[A-Z]+-[0-9]+"; //KA-01- HH-1234
 	private static enum COLORS {RED,BLUE,WHITE,GREEN,GREY,BLACK,YELLOW,PINK,MAROON};
 	/**
 	 * This method does the validation of given RegNumber string. Here Current just checks for the pattern [a-zA-Z]{2}-[0-9]{2}-[a-zA-Z]{1}-[0-9]{6}
@@ -40,4 +40,5 @@ public class Validator {
 
 		return matched;
 	}
+	
 }

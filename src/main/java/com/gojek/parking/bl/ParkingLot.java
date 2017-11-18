@@ -16,6 +16,7 @@ public interface ParkingLot {
 	public ParkingLotResponse<Slot> createParkingLot(int slots);
 	public ParkingLotResponse<Slot>  park(String regNumber,String color);
 	public ParkingLotResponse<Slot>  leave(String regNumber);
+	public ParkingLotResponse<Slot>  leave(Integer regNumber);
 	public ParkingLotResponse<Slot>  getStatus();
 	public ParkingLotResponse<String>  getRegNumbersByColor(String color);
 	public ParkingLotResponse<Slot>  getSlotByRegNumber(String regNumber);

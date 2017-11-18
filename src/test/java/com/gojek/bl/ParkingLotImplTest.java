@@ -82,7 +82,7 @@ public class ParkingLotImplTest {
 
 		// This is the prerequisite.
 		parking.createParkingLot(1);
-		parking.park("KA-51-Z-1990", "GREEN");
+		parking.park("KA-51-ZA-1990", "GREEN");
 		ParkingLotResponse<Slot> response = parking.leave((String) data[0]);
 		if (data[1] != null && ((String) data[1]).contains("occupied=false")) {
 			assertTrue(response != null);
