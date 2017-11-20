@@ -35,6 +35,7 @@
 	</test>
 	
 	<test name="status">
+		<parameter name="testPrerequisitesfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
 		<parameter name="testSceanriosfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
 		<classes>
 			<class name="com.gojek.bl.ParkingLotImplTest" />
@@ -45,11 +46,24 @@
 		</classes>
 	</test>
 	<test name="registration_numbers_for_cars_with_colour">
+		<parameter name="testPrerequisitesfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
 		<parameter name="testSceanriosfilePath" value="src/test/resources/registrationNumbersForCarsWithColourTestScenarios.csv" />
 		<classes>
 			<class name="com.gojek.bl.ParkingLotImplTest" />
 			<methods>
 				<include name="registrationNumbersForCarsWithColour" />
+				<include name="statusPrerequisite" />
+			</methods>
+		</classes>
+	</test>
+	
+	<test name="slot_numbers_for_cars_with_colour">
+		<parameter name="testPrerequisitesfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
+		<parameter name="testSceanriosfilePath" value="src/test/resources/slotNumbersForCarsWithColourTestScenarios.csv" />
+		<classes>
+			<class name="com.gojek.bl.ParkingLotImplTest" />
+			<methods>
+				<include name="slotNumbersForCarsWithColour" />
 				<include name="statusPrerequisite" />
 			</methods>
 		</classes>

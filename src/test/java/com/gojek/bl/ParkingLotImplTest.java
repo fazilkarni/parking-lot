@@ -4,7 +4,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -136,5 +138,36 @@ public class ParkingLotImplTest {
 	public void registrationNumbersForCarsWithColour(Object[] data) {
 		ParkingLotResponse<String> response = parkingForStatus.getRegNumbersByColor((String)data[0]);
 		assertTrue(response.isStatus());
+		//Parse expected output to compare with the one received from the API
+		String[] expectedRegNumbers = ((String)data[1]).split(":");
+		//Construct the map of expected regNumbers.
+		Set<String> expectedRegNumbersSet = new HashSet<String>();
+		for(String token:expectedRegNumbers){
+			expectedRegNumbersSet.add(token);
+		}
+		//Iterate over the registration numbers received from the API and compare with the expected ones.
+		List<String> regNumbersFromAPI = response.getData();
+		for(String regNumber:regNumbersFromAPI){
+			assertTrue(expectedRegNumbersSet.contains(regNumber));
+		}
+	}
+	
+	@Test(dependsOnMethods = "statusPrerequisite", dataProvider = "slotNumbersForCarsWithColorDataProvider", dataProviderClass = ParkingLotDataProvider.class)
+	public void slotNumbersForCarsWithColour(Object[] data) {
+		ParkingLotResponse<Integer> response = parkingForStatus.getSlotNumsByColor((String)data[0]);
+		assertTrue(response.isStatus());
+		//Parse expected output to compare with the one received from the API
+		String[] expectedRegNumbers = ((String)data[1]).split(":");
+		//Construct the map of expected regNumbers.
+		Set<String> expectedRegNumbersSet = new HashSet<String>();
+		for(String token:expectedRegNumbers){
+			expectedRegNumbersSet.add(token);
+		}
+		//Iterate over the registration numbers received from the API and compare with the expected ones.
+		List<Integer> regNumbersFromAPI = response.getData();
+		for(Integer regNumber:regNumbersFromAPI){
+			Boolean result = expectedRegNumbersSet.contains(regNumber.toString());
+			assertTrue(result);
+		}
 	}
 }

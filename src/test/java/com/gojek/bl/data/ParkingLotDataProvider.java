@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 
 public class ParkingLotDataProvider {
 	private static final String filePath = "testSceanriosfilePath";
+	private static final String filePathForPrerequisites = "testPrerequisitesfilePath";
 	
 	@DataProvider(name = "createParkingLotDataProvider")
 	public static Object[][] getDataProvider(ITestContext context) {
@@ -23,10 +24,17 @@ public class ParkingLotDataProvider {
 	
 	@DataProvider(name = "statusPrerequisite")
 	public static Object[][] getStatusTestPrerequisite(ITestContext context) {
-		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePathForPrerequisites));
 	}
 	@DataProvider(name = "regNumbersForCarsWithColorDataProvider")
 	public static Object[][] getRegNumbersForCarsWithColor(ITestContext context) {
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
+	
+	@DataProvider(name = "slotNumbersForCarsWithColorDataProvider")
+	public static Object[][] getSlotNumbersForCarsWithColorDataProvider(ITestContext context) {
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
+	}
+	
+	
 }
