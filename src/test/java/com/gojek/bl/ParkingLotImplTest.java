@@ -26,13 +26,14 @@ public class ParkingLotImplTest {
 	@BeforeMethod
 	public void setUp() {
 		// System.out.println("created");
-		parking = new ParkingLotImpl();
+		parking = ParkingLotImpl.getInstance();
+		parkingForStatus = parking;
 	}
 
 	//TODO: try to initialize this object when when required. Make it group specific.
 	@BeforeClass
 	public void beforeTest() {
-		parkingForStatus = new ParkingLotImpl();
+		//parkingForStatus = ParkingLotImpl.getInstance();
 
 	}
 

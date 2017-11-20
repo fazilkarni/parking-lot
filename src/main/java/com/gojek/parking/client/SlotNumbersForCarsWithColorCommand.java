@@ -24,6 +24,7 @@ public class SlotNumbersForCarsWithColorCommand implements Command {
 					del=", ";
 				};
 			}
+			System.out.println("");
 			
 		}else{
 			System.out.println("No cars with the color "+args[1]+" are parked");

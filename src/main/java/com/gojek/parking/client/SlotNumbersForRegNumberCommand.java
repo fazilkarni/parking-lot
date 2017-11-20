@@ -20,10 +20,12 @@ public class SlotNumbersForRegNumberCommand implements Command {
 		System.out.println("Output:");
 		if(response.isStatus() && slots.size()>0){
 			for(Slot slot:slots){
-				System.out.print(del+slot.getSlotNumber());
-				if(del==""){
-					del=", ";
-				};
+				if(slot!=null){
+					System.out.print(del+slot.getSlotNumber());
+					if(del==""){
+						del=", ";
+					}
+				}
 			}
 			
 		}else{

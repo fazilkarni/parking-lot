@@ -53,7 +53,7 @@ public class Utils {
 	
 	public static Map<String, Command> initAvailableCommands(){
 		Map<String, Command> availableCommands = new HashMap<String,Command>();
-		ParkingLot parkingLot = new ParkingLotImpl();
+		ParkingLot parkingLot = ParkingLotImpl.getInstance();
 		
 		availableCommands.put("create_parking_lot", new CreateParkingLotCommand(parkingLot));
 		availableCommands.put("park", new ParkCommand(parkingLot));

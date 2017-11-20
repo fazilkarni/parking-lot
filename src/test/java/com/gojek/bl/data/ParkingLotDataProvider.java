@@ -10,6 +10,10 @@ public class ParkingLotDataProvider {
 	
 	@DataProvider(name = "createParkingLotDataProvider")
 	public static Object[][] getDataProvider(ITestContext context) {
+		System.out.println("context:------------------- "+context.getCurrentXmlTest().getParameter(filePath));
+		System.out.println("getAllParameters:------------------- "+context.getCurrentXmlTest().getParameters());
+		System.out.println("configuration passed:------------------- "+context.getPassedConfigurations());
+		System.out.println("test passed:------------------- "+context.getPassedTests());
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
 	@DataProvider(name = "parkDataProvider")

@@ -19,6 +19,30 @@ import com.gojek.parking.vo.Slot;
 public class ParkingLotImpl implements ParkingLot {
 	private int SLOTS_LIMIT = 99999;
 	private List<Slot> slots;
+	private volatile static ParkingLot _instance;
+	/**
+	 * This the is the private constructor to make ParkingLot a singleton object.
+	 */
+	private ParkingLotImpl(){
+		
+	}
+	
+	/**
+	 * This method to returns singleton ParkingLot object.
+	 * @return
+	 */
+	public static ParkingLot getInstance() {
+		//System.out.println("ParkingLot accessed.");
+		if (_instance == null) {
+			synchronized (ParkingLot.class) {
+				if (_instance == null) {
+					_instance = new ParkingLotImpl();
+					System.out.println("ParkingLot created and accessed.");
+				}
+			}
+		}
+		return _instance;
+	}
 
 	/**
 	 * This method initializes the slots equal to the totalSlots passed as an
