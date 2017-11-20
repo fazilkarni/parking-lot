@@ -36,5 +36,10 @@ public class ParkingLotDataProvider {
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
 	
+	@DataProvider(name = "slotNumbersForRegNumberDataProvider")
+	public static Object[][] getSlotNumbersForRegNumberDataProvider(ITestContext context) {
+		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
+	}
+	
 	
 }

@@ -19,10 +19,11 @@ public interface ParkingLot {
 	public ParkingLotResponse<Slot>  leave(Integer regNumber);
 	public ParkingLotResponse<Slot>  getStatus();
 	public ParkingLotResponse<String>  getRegNumbersByColor(String color);
-	public ParkingLotResponse<Slot>  getSlotByRegNumber(String regNumber);
 	public ParkingLotResponse<Integer>  getSlotNumsByColor(String color);
+	public ParkingLotResponse<Integer>  getSlotNumsByregNumber(String regNumber);
 	
 	/* Following are nice to have. These can be used in scenarios where more info is required.*/
+	public ParkingLotResponse<Slot>  getSlotByRegNumber(String regNumber);
 	public ParkingLotResponse<Slot>  getAllSlotsByCarColor(String color);
 	public ParkingLotResponse<Slot>  getAllSlotsByRegNumber(String regNumber);
 	

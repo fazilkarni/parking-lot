@@ -171,4 +171,14 @@ public class ParkingLotImpl implements ParkingLot {
 		return Utils.constructResponse(filteredSlotsbyRegNum, null);
 	}
 
+	public ParkingLotResponse<Integer> getSlotNumsByregNumber(String regNumber) {
+		List<Integer> filteredSlotsbyRegNum = slots.stream() // convert list to stream
+				.filter(slot -> slot.getRegNumber().toString().equals(regNumber))// collect slots having car with registration number regNumber
+				.map(Slot::getSlotNumber)
+				.collect(Collectors.toList());
+		return Utils.constructResponse(filteredSlotsbyRegNum, null);
+	}
+	
+	
+
 }

@@ -68,4 +68,17 @@
 			</methods>
 		</classes>
 	</test>
+	
+	<test name="slot_number_for_registration_number">
+		<parameter name="testPrerequisitesfilePath" value="src/test/resources/statusTestPrerequisite.csv" />
+		<parameter name="testSceanriosfilePath" value="src/test/resources/slotNumbersForRegistrationNumberTestScenarios.csv" />
+		<classes>
+			<class name="com.gojek.bl.ParkingLotImplTest" />
+			<methods>
+				<include name="slotNumbersForRegistrationNumber" />
+				<include name="statusPrerequisite" />
+			</methods>
+		</classes>
+	</test>
+	
 </suite> <!-- Suite -->
