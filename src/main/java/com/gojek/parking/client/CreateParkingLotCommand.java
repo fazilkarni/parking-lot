@@ -12,11 +12,15 @@ public class CreateParkingLotCommand implements Command {
 
 	@Override
 	public void execute(String[] args) {
-		ParkingLotResponse<Slot> response = parkingLot.createParkingLot(Integer.parseInt(args[1]));
-		if(response.isStatus() && response.getData().size()>0){
-			System.out.println("Created a parking lot with "+ response.getData().size() +" slots");
+		if(args.length<2){
+			System.out.println("number of slots argument is missing. ");
 		}else{
-			System.out.println("Internall Error. Please try other command.");
+			ParkingLotResponse<Slot> response = parkingLot.createParkingLot(Integer.parseInt(args[1]));
+			if(response.isStatus() && response.getData().size()>0){
+				System.out.println("Created a parking lot with "+ response.getData().size() +" slots");
+			}else{
+				System.out.println("Internall Error. Please try other command.");
+			}
 		}
 	}
 }

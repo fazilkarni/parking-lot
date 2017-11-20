@@ -2,6 +2,8 @@ package com.gojek.parking.util;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import com.gojek.parking.vo.Slot;
 /**
  * This class is used for various validations such as Registration number, color etc.
  * @author mkarni
@@ -39,6 +41,15 @@ public class Validator {
 		}
 
 		return matched;
+	}
+	
+	public static boolean isDuplicateRegNumbers(String regNumber,List<Slot> slots){
+		for(Slot slot:slots){
+			if(slot.getRegNumber().equalsIgnoreCase(regNumber)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

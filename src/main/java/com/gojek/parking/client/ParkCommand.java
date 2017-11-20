@@ -13,11 +13,15 @@ public class ParkCommand implements Command{
 
 	@Override
 	public void execute(String[] args) {
-		ParkingLotResponse<Slot> response = parkingLot.park(args[1],args[2]);
-		if(response.isStatus() && response.getData().size()>0){
-			System.out.println("Allocated slot number: "+ response.getData().get(0).getSlotNumber());
-		}else if(!response.isStatus()){
-			System.out.println(response.getErrors().get(0));
+		if(args.length<3){
+			System.out.println("Registration/car color  is missing");
+		}else{
+			ParkingLotResponse<Slot> response = parkingLot.park(args[1],args[2]);
+			if(response.isStatus() && response.getData().size()>0){
+				System.out.println("Allocated slot number: "+ response.getData().get(0).getSlotNumber());
+			}else if(!response.isStatus()){
+				System.out.println(response.getErrors().get(0));
+			}
 		}
 	}
 

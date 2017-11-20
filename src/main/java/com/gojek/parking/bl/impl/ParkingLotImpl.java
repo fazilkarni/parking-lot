@@ -73,7 +73,10 @@ public class ParkingLotImpl implements ParkingLot {
 		if (Validator.validateRegNumber(regNumber, errorsMessages) && Validator.validateColor(color, errorsMessages)) {
 			if (slots == null) {
 				return Utils.constructResponse(null, errorsMessages);
-			} else {
+			} else if(Validator.isDuplicateRegNumbers(regNumber,slots)) {
+				errorsMessages.add("Duplicate resigster number");
+				return Utils.constructResponse(null, errorsMessages);
+			}else{
 				slot = Utils.getFreeSlot(slots);
 				if (slot != null) {
 					slot.setRegNumber(regNumber);
@@ -93,7 +96,7 @@ public class ParkingLotImpl implements ParkingLot {
 	}
 
 	/**
-	 * This method method removes the car from the parking lot and updates the
+	 * This method method removes the car from the parking lot by regNumber and updates the
 	 * status appropriately in Parking lot.
 	 */
 	public ParkingLotResponse<Slot> leave(String regNumber) {
@@ -122,7 +125,7 @@ public class ParkingLotImpl implements ParkingLot {
 	}
 	
 	/**
-	 * This method method removes the car from the parking lot and updates the
+	 * This method method removes the car from the parking lot by slot number and updates the
 	 * status appropriately in Parking lot.
 	 */
 	public ParkingLotResponse<Slot> leave(Integer slotNumber) {
@@ -142,7 +145,7 @@ public class ParkingLotImpl implements ParkingLot {
 			errorMessages = new ArrayList<String>();
 			errorMessages.add("Slot number " + slotNumber + " is invalid");
 		}
-		// Construct and return the response.
+		// Construct and return the response. 
 		if (slot != null) {
 			VaccantSlots = new ArrayList<Slot>();
 			VaccantSlots.add(slot);
@@ -163,14 +166,14 @@ public class ParkingLotImpl implements ParkingLot {
 	 */
 	public ParkingLotResponse<String> getRegNumbersByColor(String color) {
 
-		List<String> collect = slots.stream().filter(slot -> slot.getColor().toString().equals(color))
+		List<String> collect = slots.stream().filter(slot -> slot.getColor()!=null && slot.getColor().toString().equals(color))
 				.map(Slot::getRegNumber).collect(Collectors.toList());
 		return Utils.constructResponse(collect, null);
 
 	}
 
 	public ParkingLotResponse<Integer> getSlotNumsByColor(String color) {
-		List<Integer> collect = slots.stream().filter(slot -> slot.getColor().toString().equals(color))
+		List<Integer> collect = slots.stream().filter(slot -> slot.getColor()!=null && slot.getColor().toString().equals(color))
 				.map(Slot::getSlotNumber).collect(Collectors.toList());
 		return Utils.constructResponse(collect, null);
 	}
@@ -183,21 +186,21 @@ public class ParkingLotImpl implements ParkingLot {
 
 	public ParkingLotResponse<Slot> getAllSlotsByCarColor(String color) {
 		List<Slot> filteredSlotsByColor = slots.stream() // convert list to stream
-				.filter(slot -> slot.getColor().toString().equals(color)) //collect slots having car with  car color equals to "color"
+				.filter(slot -> slot.getColor()!=null && slot.getColor().toString().equals(color)) //collect slots having car with  car color equals to "color"
 				.collect(Collectors.toList());
 		return Utils.constructResponse(filteredSlotsByColor, null);
 	}
 
 	public ParkingLotResponse<Slot> getAllSlotsByRegNumber(String regNumber) {
 		List<Slot> filteredSlotsbyRegNum = slots.stream() // convert list to stream
-				.filter(slot -> slot.getRegNumber().toString().equals(regNumber)) // collect slots having car with registration number regNumber
+				.filter(slot -> slot.getRegNumber()!=null && slot.getRegNumber().toString().equals(regNumber)) // collect slots having car with registration number regNumber
 				.collect(Collectors.toList());
 		return Utils.constructResponse(filteredSlotsbyRegNum, null);
 	}
 
 	public ParkingLotResponse<Integer> getSlotNumsByregNumber(String regNumber) {
 		List<Integer> filteredSlotsbyRegNum = slots.stream() // convert list to stream
-				.filter(slot -> slot.getRegNumber().toString().equals(regNumber))// collect slots having car with registration number regNumber
+				.filter(slot -> slot.getRegNumber()!=null && slot.getRegNumber().toString().equals(regNumber))// collect slots having car with registration number regNumber
 				.map(Slot::getSlotNumber)
 				.collect(Collectors.toList());
 		return Utils.constructResponse(filteredSlotsbyRegNum, null);
