@@ -17,7 +17,7 @@ public class RegNumbersForCarsWithColorCommand implements Command {
 		ParkingLotResponse<String> response = parkingLot.getRegNumbersByColor(args[1]);
 		List<String> regNumbers = response.getData();
 		String del="";
-		System.out.println("Output:");
+		//System.out.println("Output:");
 		if(response.isStatus() && regNumbers.size()>0){
 			for(String regNumber:regNumbers){
 				System.out.print(del+regNumber);

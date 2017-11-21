@@ -37,7 +37,6 @@ public class ParkingLotImpl implements ParkingLot {
 			synchronized (ParkingLot.class) {
 				if (_instance == null) {
 					_instance = new ParkingLotImpl();
-					System.out.println("ParkingLot created and accessed.");
 				}
 			}
 		}
@@ -138,18 +137,17 @@ public class ParkingLotImpl implements ParkingLot {
 				slot.setOccupied(false);
 				slot.setColor(null);
 				slot.setRegNumber(null);
+				VaccantSlots = new ArrayList<Slot>();
+				VaccantSlots.add(slot);
 			} else {
-				errorMessages.add("No car parked at the slot number "+slotNumber);
+				errorMessages.add("No car parked at the slot number "+ ++slotNumber); // +1 is required as arrays start from 0 so it was reduced by 1. So while sending it back to client increment it by 1
 			}
-		} else {
+		}else {
 			errorMessages = new ArrayList<String>();
 			errorMessages.add("Slot number " + slotNumber + " is invalid");
 		}
 		// Construct and return the response. 
-		if (slot != null) {
-			VaccantSlots = new ArrayList<Slot>();
-			VaccantSlots.add(slot);
-		}
+		
 		return Utils.constructResponse(VaccantSlots, errorMessages);
 	}
 

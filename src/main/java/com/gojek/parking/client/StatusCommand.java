@@ -18,7 +18,7 @@ public class StatusCommand implements Command{
 		ParkingLotResponse<Slot> response = parkingLot.getStatus();
 		List<Slot> slots = response.getData();
 		if(response.isStatus() && slots.size()>0){
-			System.out.println("Output (tab delimited output):");
+			//System.out.println("Output (tab delimited output):");
 			System.out.println("Slot No\tRegistration No.\tColour");
 			for(Slot slot:slots){
 				System.out.println(slot.getSlotNumber()+"\t"+ slot.getRegNumber()+"\t"+slot.getColor());

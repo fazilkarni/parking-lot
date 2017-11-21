@@ -17,7 +17,7 @@ public class SlotNumbersForRegNumberCommand implements Command {
 		ParkingLotResponse<Slot> response = parkingLot.getSlotByRegNumber(args[1]);
 		List<Slot> slots = response.getData();
 		String del="";
-		System.out.println("Output:");
+		//System.out.println("Output:");
 		if(response.isStatus() && slots.size()>0){
 			for(Slot slot:slots){
 				if(slot!=null){

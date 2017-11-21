@@ -24,6 +24,7 @@ public class CommandExecutor {
 			String commandString = scanner.nextLine();
 			String[] commandParams = commandString.split(" ");
 			while (!commandString.equalsIgnoreCase("bye")) {
+				System.out.println("Output: ");
 				processCommands(commandParams);
 				//Read next command
 				System.out.println("Input: ");

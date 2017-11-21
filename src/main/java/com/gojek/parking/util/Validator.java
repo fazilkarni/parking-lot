@@ -45,7 +45,7 @@ public class Validator {
 	
 	public static boolean isDuplicateRegNumbers(String regNumber,List<Slot> slots){
 		for(Slot slot:slots){
-			if(slot.getRegNumber().equalsIgnoreCase(regNumber)){
+			if(slot.getRegNumber()!=null && slot.getRegNumber().equalsIgnoreCase(regNumber)){
 				return true;
 			}
 		}

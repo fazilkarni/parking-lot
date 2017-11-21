@@ -22,7 +22,7 @@ public class LeaveCommand implements Command{
 			if(response.isStatus() && response.getData().size()>0){
 				System.out.println("Slot number "+ response.getData().get(0).getSlotNumber()+" is free ");
 			}else{
-				System.out.println("Slot number "+ response.getData().get(0).getSlotNumber()+" is not occupied");
+				System.out.println(response.getErrors().get(0));//Here better iterate over the erros and print them all.
 			}
 		}
 		
