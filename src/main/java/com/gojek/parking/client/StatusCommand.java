@@ -6,6 +6,11 @@ import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotResponse;
 import com.gojek.parking.vo.Slot;
 
+/**
+ * This class models/encapsulates the slot command.
+ * @author mkarni
+ *
+ */
 public class StatusCommand implements Command{
 
 	private ParkingLot parkingLot;

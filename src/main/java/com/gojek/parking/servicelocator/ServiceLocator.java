@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotImpl;
+import com.gojek.parking.constants.Constants;
 
 public class ServiceLocator {
 

@@ -5,6 +5,12 @@ import java.util.List;
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotResponse;
 
+/**
+ * This class models/encapsulates the slot_numbers_for_cars_with_colour command.
+ *
+ * @author mkarni
+ *
+ */
 public class SlotNumbersForCarsWithColorCommand implements Command {
 	private ParkingLot parkingLot;
 	public SlotNumbersForCarsWithColorCommand(ParkingLot parkingLot){

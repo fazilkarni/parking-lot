@@ -5,7 +5,11 @@ import java.util.List;
 import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotResponse;
 import com.gojek.parking.vo.Slot;
-
+/**
+ * This class models/encapsulates the slot_number_for_registration_number command.
+ * @author mkarni
+ *
+ */
 public class SlotNumbersForRegNumberCommand implements Command {
 	private ParkingLot parkingLot;
 	public SlotNumbersForRegNumberCommand(ParkingLot parkingLot){
@@ -27,6 +31,7 @@ public class SlotNumbersForRegNumberCommand implements Command {
 					}
 				}
 			}
+			System.out.println();// This is required to print the output on the next line for the next command.
 			
 		}else{
 			System.out.println("Not found");

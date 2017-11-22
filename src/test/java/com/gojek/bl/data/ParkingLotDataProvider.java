@@ -3,17 +3,17 @@ package com.gojek.bl.data;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
-
+/**
+ * This is class has the methods to provide test scenarios for various tests.
+ * @author mkarni
+ *
+ */
 public class ParkingLotDataProvider {
 	private static final String filePath = "testSceanriosfilePath";
 	private static final String filePathForPrerequisites = "testPrerequisitesfilePath";
 	
 	@DataProvider(name = "createParkingLotDataProvider")
 	public static Object[][] getDataProvider(ITestContext context) {
-		System.out.println("context:------------------- "+context.getCurrentXmlTest().getParameter(filePath));
-		System.out.println("getAllParameters:------------------- "+context.getCurrentXmlTest().getParameters());
-		System.out.println("configuration passed:------------------- "+context.getPassedConfigurations());
-		System.out.println("test passed:------------------- "+context.getPassedTests());
 		return Utils.dataLoaderFrom(context.getCurrentXmlTest().getParameter(filePath));
 	}
 	@DataProvider(name = "parkDataProvider")

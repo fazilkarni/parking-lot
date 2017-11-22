@@ -9,7 +9,11 @@ import java.util.Scanner;
 
 import com.gojek.parking.util.Utils;
 
-
+/**
+ * This is the Clinet for the parking lot application/service.
+ * @author mkarni
+ *
+ */
 public class CommandExecutor {
 
 	private static Map<String, Command> availableCommands;

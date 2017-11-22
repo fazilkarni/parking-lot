@@ -14,7 +14,7 @@ import com.gojek.parking.client.RegNumbersForCarsWithColorCommand;
 import com.gojek.parking.client.SlotNumbersForCarsWithColorCommand;
 import com.gojek.parking.client.SlotNumbersForRegNumberCommand;
 import com.gojek.parking.client.StatusCommand;
-import com.gojek.parking.servicelocator.Constants;
+import com.gojek.parking.constants.Constants;
 import com.gojek.parking.servicelocator.ServiceLocator;
 import com.gojek.parking.vo.Slot;
 

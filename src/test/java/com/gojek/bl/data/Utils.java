@@ -8,6 +8,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains helper methods to read and create data providers.
+ * @author mkarni
+ *
+ */
 public class Utils {
 	
 	public static Object[][] dataLoaderFrom(String fileName) {

@@ -1,7 +1,7 @@
 package com.gojek.parking.servicelocator;
 
 /**
- * This is used to configure or load service locator with the services.
+ * This class is used to configure or load service locator with the services.
  * @author mkarni
  *
  */

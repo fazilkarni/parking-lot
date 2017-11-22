@@ -4,6 +4,11 @@ import com.gojek.parking.bl.ParkingLot;
 import com.gojek.parking.bl.impl.ParkingLotResponse;
 import com.gojek.parking.vo.Slot;
 
+/**
+ * This class models/encapsulates the leave parking lot command.
+ * @author mkarni
+ *
+ */
 public class LeaveCommand implements Command{
 	
 	private ParkingLot parkingLot;
